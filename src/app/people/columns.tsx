@@ -43,7 +43,22 @@ export const columns: ColumnDef<Person>[] = [
     },
     {
         accessorKey: "date_of_birth",
-        header: "Date of Birth",
+        header: ({column}) => {
+            return (
+                <Button
+                    variant='ghost'
+                    onClick={()=> column.toggleSorting(column.getIsSorted() === "asc")}
+                >
+                    Date of Birth
+                    <ArrowUpDown className="ml-2 h-4 w-4"/>
+                </Button>
+            )
+        },
+        cell: ({row}) => {
+            const date_of_birth = row.getValue("date_of_birth")
+            const formatted_dob = new Date(date_of_birth as string).toLocaleDateString()
+            return <div className="font-medium">{formatted_dob}</div>
+        }
     },
     {
         id: "actions",
