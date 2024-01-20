@@ -32,6 +32,7 @@ import {
     DropdownMenuContent,
     DropdownMenuTrigger,
   } from "@/components/ui/dropdown-menu"
+import { ThemeToggle } from '@/components/ui/ThemeToggle'
 
 interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[]
@@ -79,10 +80,12 @@ export function PeopleDataTable<TData, TValue>({
                     className='max-w-sm'
                 />
 
+                <ThemeToggle className='ml-4'/>
+
                 {/*Column visibility dropdown btn*/}
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                        <Button variant='outline' className='ml-auto'>
+                        <Button variant='outline' className='ml-4'>
                             Columns
                         </Button>
                     </DropdownMenuTrigger>
