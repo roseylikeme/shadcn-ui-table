@@ -45,6 +45,7 @@ export function PeopleDataTable<TData, TValue>({
     const [sorting, setSorting] = React.useState<SortingState>([])
     const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([])
     const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({})
+    const [rowSelection, setRowSelection] = React.useState({})
 
     const table = useReactTable({
         data,
@@ -56,11 +57,13 @@ export function PeopleDataTable<TData, TValue>({
         onColumnFiltersChange: setColumnFilters,
         getFilteredRowModel: getFilteredRowModel(),
         onColumnVisibilityChange: setColumnVisibility,
+        onRowSelectionChange: setRowSelection,
 
         state: {
             sorting,
             columnFilters,
             columnVisibility,
+            rowSelection,
         }
     })
 
@@ -146,7 +149,9 @@ export function PeopleDataTable<TData, TValue>({
                     </TableBody>
                 </Table>
             </div>
-            <div className="flex items-center justify-center space-x-2 py-4">
+            <div>
+            <div>
+                <div className="flex items-center space-x-2 py-4">
                 <Button
                     variant='outline'
                     size='sm'
@@ -163,6 +168,12 @@ export function PeopleDataTable<TData, TValue>({
                 >
                     Next
                 </Button>
+                <div className='flex-1 text-sm text-muted-foreground'>
+                    {table.getFilteredSelectedRowModel().rows.length} of{" "}
+                    {table.getFilteredRowModel().rows.length} row(s) selected.
+                </div>
+            </div>
+            </div>
             </div>
         </div>
     )
