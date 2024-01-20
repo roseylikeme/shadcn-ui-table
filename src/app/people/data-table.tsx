@@ -76,6 +76,7 @@ export function PeopleDataTable<TData, TValue>({
                     className='max-w-sm'
                 />
 
+                {/*Column visibility dropdown btn*/}
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
                         <Button variant='outline' className='ml-auto'>
@@ -89,6 +90,8 @@ export function PeopleDataTable<TData, TValue>({
                                 (column) => column.getCanHide()
                             )
                             .map((column) => {
+                                // as long as it's not the actions column, we can toggle visibility
+                                if (column.id !== "actions")
                                 return (
                                     <DropdownMenuCheckboxItem
                                         key={column.id}
