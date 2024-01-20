@@ -33,6 +33,7 @@ import {
     DropdownMenuTrigger,
   } from "@/components/ui/dropdown-menu"
 import { ThemeToggle } from '@/components/ui/ThemeToggle'
+import { downloadToExcel } from '@/lib/xlsx'
 
 interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[]
@@ -112,6 +113,9 @@ export function PeopleDataTable<TData, TValue>({
                         }
                     </DropdownMenuContent>
                 </DropdownMenu>
+                <Button onClick={() => downloadToExcel()} className="ml-4">
+                    Export to Excel
+                </Button>
             </div>
             <div className="rounded-md border">
                 <Table>
