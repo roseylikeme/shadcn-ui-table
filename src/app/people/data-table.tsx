@@ -159,16 +159,14 @@ export function PeopleDataTable<TData, TValue>({
             <div>
                 <div>
                     <div className="flex items-center space-x-2 py-4">
-                        <div>
-                            <Button
+                        <Button
                                 variant='outline'
                                 size='sm'
                                 onClick={() => table.setPageIndex(0)}
                                 disabled={!table.getCanPreviousPage()}
                             >
                                 First
-                            </Button>
-                        </div>
+                        </Button>
                         <Button
                             variant='outline'
                             size='sm'
@@ -185,10 +183,6 @@ export function PeopleDataTable<TData, TValue>({
                         >
                             Next
                         </Button>
-                        <div className='flex-1 text-sm text-muted-foreground'>
-                            {table.getFilteredSelectedRowModel().rows.length} of{" "}
-                            {table.getFilteredRowModel().rows.length} row(s) selected.
-                        </div>
                         <div>
                             <Button
                                 variant='outline'
@@ -201,6 +195,10 @@ export function PeopleDataTable<TData, TValue>({
                         </div>
                     </div>
                 </div>
+            </div>
+            <div className='text-sm text-muted-foreground'>
+                {table.getFilteredSelectedRowModel().rows.length} of{" "}
+                {table.getFilteredRowModel().rows.length} row(s) selected.
             </div>
         </div>
     )
