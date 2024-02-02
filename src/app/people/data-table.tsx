@@ -9,6 +9,7 @@ import {
     ColumnFiltersState,
     SortingState,
     VisibilityState,
+    PaginationState,
     flexRender,
     getCoreRowModel,
     getFilteredRowModel,
@@ -31,7 +32,7 @@ import {
     DropdownMenuCheckboxItem,
     DropdownMenuContent,
     DropdownMenuTrigger,
-  } from "@/components/ui/dropdown-menu"
+} from "@/components/ui/dropdown-menu"
 import { ThemeToggle } from '@/components/ui/ThemeToggle'
 import { downloadToExcel } from '@/lib/xlsx'
 
@@ -81,7 +82,7 @@ export function PeopleDataTable<TData, TValue>({
                     className='max-w-sm'
                 />
 
-                <ThemeToggle className='ml-4'/>
+                <ThemeToggle className='ml-4' />
 
                 {/*Column visibility dropdown btn*/}
                 <DropdownMenu>
@@ -99,16 +100,16 @@ export function PeopleDataTable<TData, TValue>({
                             .map((column) => {
                                 // as long as it's not the actions column, we can toggle visibility
                                 if (column.id !== "actions")
-                                return (
-                                    <DropdownMenuCheckboxItem
-                                        key={column.id}
-                                        className='capitalize'
-                                        checked={column.getIsVisible()}
-                                        onCheckedChange={(value) => column.toggleVisibility(!!value)}
-                                    >
-                                        {column.id}
-                                    </DropdownMenuCheckboxItem>
-                                )
+                                    return (
+                                        <DropdownMenuCheckboxItem
+                                            key={column.id}
+                                            className='capitalize'
+                                            checked={column.getIsVisible()}
+                                            onCheckedChange={(value) => column.toggleVisibility(!!value)}
+                                        >
+                                            {column.id}
+                                        </DropdownMenuCheckboxItem>
+                                    )
                             })
                         }
                     </DropdownMenuContent>
@@ -120,7 +121,7 @@ export function PeopleDataTable<TData, TValue>({
             <div className="rounded-md border">
                 <Table>
                     <TableHeader>
-                    {table.getHeaderGroups().map(headerGroup => {
+                        {table.getHeaderGroups().map(headerGroup => {
                             return (
                                 <TableRow key={headerGroup.id}>
                                     {headerGroup.headers.map(header => {
@@ -160,12 +161,12 @@ export function PeopleDataTable<TData, TValue>({
                 <div>
                     <div className="flex items-center space-x-2 py-4">
                         <Button
-                                variant='outline'
-                                size='sm'
-                                onClick={() => table.setPageIndex(0)}
-                                disabled={!table.getCanPreviousPage()}
-                            >
-                                First
+                            variant='outline'
+                            size='sm'
+                            onClick={() => table.setPageIndex(0)}
+                            disabled={!table.getCanPreviousPage()}
+                        >
+                            First
                         </Button>
                         <Button
                             variant='outline'
@@ -193,6 +194,18 @@ export function PeopleDataTable<TData, TValue>({
                                 Last
                             </Button>
                         </div>
+                        <select
+                            value={table.getState().pagination.pageSize}
+                            onChange={e => {
+                                table.setPageSize(Number(e.target.value))
+                            }}
+                        >
+                            {[10, 20, 30, 40, 50, 100].map(pageSize => (
+                                <option key={pageSize} value={pageSize}>
+                                    Show {pageSize}
+                                </option>
+                            ))}
+                        </select>
                     </div>
                 </div>
             </div>
