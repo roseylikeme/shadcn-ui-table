@@ -3,6 +3,7 @@
 import React from 'react'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { ChevronUp } from "lucide-react"
 
 import {
     ColumnDef,
@@ -194,18 +195,29 @@ export function PeopleDataTable<TData, TValue>({
                                 Last
                             </Button>
                         </div>
-                        <select
-                            value={table.getState().pagination.pageSize}
-                            onChange={e => {
-                                table.setPageSize(Number(e.target.value))
-                            }}
-                        >
-                            {[10, 20, 30, 40, 50, 100].map(pageSize => (
-                                <option key={pageSize} value={pageSize}>
-                                    Show {pageSize}
-                                </option>
-                            ))}
-                        </select>
+                        <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                        <Button variant='outline' className='ml-4'>
+                            Show {table.getState().pagination.pageSize} <ChevronUp className="ml-2 h-4 w-4" />
+                        </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align='end'>
+                        {/* Pagination control goes here */}
+                        {[10, 25, 50].map(pageSize => (
+                            <DropdownMenuCheckboxItem
+                                key={pageSize}
+                                checked={table.getState().pagination.pageSize === pageSize}
+                                onCheckedChange={(value) => {
+                                    if (value) {
+                                        table.setPageSize(pageSize)
+                                    }
+                                }}
+                            >
+                                Show {pageSize} 
+                            </DropdownMenuCheckboxItem>
+                        ))}
+                    </DropdownMenuContent>
+                </DropdownMenu>
                     </div>
                 </div>
             </div>
