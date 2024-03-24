@@ -12,7 +12,7 @@ export function downloadToExcel() {
         { label: "Email", value: "email" },
         {
           label: "Date of Birth",
-          value: (row) => new Date(row.date_of_birth).toLocaleDateString(),
+          value: (row) => new Date(row.date_of_birth as string).toLocaleDateString(),
         },
       ],
       content: people,
