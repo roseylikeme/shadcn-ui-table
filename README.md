@@ -1,5 +1,5 @@
 # shadcn-ui-table
-During my time working at Alameda County, I had the opportunity to observe the UI for the poll worker system used by recruiters. This project, shadcn-ui-table, is a TanStack React Table utilizing Shadcn/UI and the Next.js framework. 
+During my time working at Alameda County, I had the opportunity to observe the UI for the poll worker system used by recruiters. This project, shadcn-ui-table, is a TanStack React Table utilizing Shadcn/UI and the Next.js framework.
 
 ## Description + Goal
 The Poll Worker System stores data of individuals interested in serving as poll workers for elections. The goal of this project was to enhance the UI/UX and implement new features for the Poll Worker System, providing a better experience for future recruiters. My objectives for this project were:
@@ -30,3 +30,6 @@ After taking a break from the problem, I looked into the columns component to se
 ## Learnings + Growth
 With this project I got to utilize new tools such as ShadcnUI, TypeScript, Next.JS, and TanStack Table.
 
+## Screenshots
+
+![image](https://github.com/roseylikeme/shadcn-ui-table/assets/52300630/62ba7f34-6a08-41ae-ba75-88614182659c)
